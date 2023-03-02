@@ -1,0 +1,44 @@
+.navBar {
+    margin-top: 2.5px;
+    padding: 0;
+    position: fixed;
+    top: 10px;
+    left: 25px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 10% 10% 80%;
+    justify-items: right;
+    padding-right: 5rem;
+    align-items: center;
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #fff;
+    background:
+        linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p, 100%)/300% no-repeat,
+        #E97F02;
+}
+
+.navBar button {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    background-color: #fff;
+    color: #E97F02;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding: 0;
+}
+
+.link {
+    color: #fff;
+}
+
+.a {
+    display: flex;
+    align-items: center;
+    margin-top: 1px;
+}

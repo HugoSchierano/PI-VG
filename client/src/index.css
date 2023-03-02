@@ -1,0 +1,10 @@
+body {
+    width: 100%;
+    background-color: #dfdfe5;
+    background-image: url('./videogame.png');
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+}
