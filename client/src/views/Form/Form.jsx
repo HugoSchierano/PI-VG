@@ -41,13 +41,13 @@ const Form = () => {
         } else if (property === 'description') {
             validateDescription({ ...form, [property]: value });
             setForm({ ...form, [property]: value });
-            // } else if (property === 'rating') {
-            //     validateRating({ ...form, [property]: value });
-            //     setForm({ ...form, [property]: value });
+        } else if (property === 'rating') {
+            onlyOne(e);
+            if (form.rating === value) { return setForm({ ...form, rating: '' }) }
+            else { return setForm({ ...form, rating: value }) };
         }
         setForm({ ...form, [property]: value });
     };
-
 
     const selectHandler = (e) => {
         const value = e.target.value;
@@ -61,12 +61,6 @@ const Form = () => {
             return alert(`No se puede repetir ${value}`);
         }
     };
-
-    // const validateRating = (form) => {
-    //         (form.rating === 0 || form.rating === 1 || form.rating === 2 || form.rating === 3 || form.rating === 4 || form.rating === 5) ?
-    //         setError({ ...error, rating: '' }) :
-    //         setError({ ...error, rating: 'El rating debe ser un número entero del 0 al 5' })
-    // };
 
     const validateName = (form) => {
         var alphanumeric = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/
@@ -124,6 +118,14 @@ const Form = () => {
         setForm({ ...form, platforms: form.platforms.filter(el => el !== sel) });
     };
 
+    const onlyOne = (e) => {
+        const value = e.target.value;
+        var checkboxes = document.getElementsByName('rating')
+        checkboxes.forEach((item) => {
+            if (item.value !== value) item.checked = false
+        })
+    };
+
     return (
         <><div>
             <h1 className={style.h1}>CREA TU VIDEOGAME</h1>
@@ -132,7 +134,7 @@ const Form = () => {
                 <div>
 
                     <div><label>Name: </label>
-                        <input type='text' value={form.name} onChange={changeHandler} name='name' /><br/>
+                        <input type='text' value={form.name} onChange={changeHandler} name='name' /><br />
                         {error.name && <span>{error.name}</span>}
                     </div>
                     <div>
@@ -141,7 +143,7 @@ const Form = () => {
                     </div>
                     <div>
                         <label>Description: </label>
-                        <input type='text' value={form.description} onChange={changeHandler} name='description' /><br/>
+                        <input type='text' value={form.description} onChange={changeHandler} name='description' /><br />
                         {error.description && <span>{error.description}</span>}
                     </div>
                     <div>
@@ -150,7 +152,13 @@ const Form = () => {
                     </div>
                     <div>
                         <label>Rating: </label>
-                        <input type='text' value={form.rating} onChange={changeHandler} name='rating' />
+                        <div className={style.rtn}>
+                        <input className={style.rating} type='checkbox' value='1' onChange={changeHandler} name='rating' />1<br />
+                        <input className={style.rating} type='checkbox' value='2' onChange={changeHandler} name='rating' />2<br />
+                        <input className={style.rating} type='checkbox' value='3' onChange={changeHandler} name='rating' />3<br />
+                        <input className={style.rating} type='checkbox' value='4' onChange={changeHandler} name='rating' />4<br />
+                        <input className={style.rating} type='checkbox' value='5' onChange={changeHandler} name='rating' />5<br />
+                        </div>
                     </div>
                     <div>
                         <label>Genres: </label>
@@ -180,7 +188,7 @@ const Form = () => {
                                     <option key={index} value={pl}>{pl}</option>
                                 );
                             })}
-                        </select><br/>
+                        </select><br />
                         {error.platforms && <span>{error.platforms}</span>}
                         <div>
                             {form.platforms?.map((sel, index) => {
